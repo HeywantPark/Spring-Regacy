@@ -9,6 +9,9 @@ public class MemberDtoListV1 {
 
     private MemberDtoListV1() {
         this.memberDtoList = new ArrayList<>();
+        this.addList("db1648","박혜원");
+        this.addList("hihi","이하이");
+
     }
     public static synchronized MemberDtoListV1 getInstance() {
         if (instance == null) {
