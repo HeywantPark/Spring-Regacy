@@ -1,2 +1,7 @@
-package org.example.config;public class RootConfig {
+package org.example.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RootConfig {
 }
