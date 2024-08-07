@@ -1,4 +1,4 @@
-package org.example.controller.member;
+package org.example.controller.member.v2;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.dto.member.MemberDtoListV2;
@@ -8,9 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @Slf4j
