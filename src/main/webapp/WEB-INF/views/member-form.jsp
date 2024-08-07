@@ -14,7 +14,7 @@
     <input type="text" id="id" name="id" required>
     <br>
     <label for="name">이름 :</label>
-    <input type="password" id="name" name="name" required>
+    <input type="text" id="name" name="name" required>
     <br>
     <button type="submit">회원 추가</button>
 </form>
