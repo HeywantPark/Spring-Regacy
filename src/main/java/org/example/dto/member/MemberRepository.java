@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class MemberRepository {
-    private MemberMapper memberMapper;
+    private final MemberMapper memberMapper;
 
 //    @Autowired
 //    public MemberRepository(MemberMapper memberMapper) {
