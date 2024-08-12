@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface PostMapper {
     List<PostDto> findAll();
-
     List<PostDto> findByCondition(@Param("title") String title, @Param("content") String content);
+    int delete(@Param("id") Long id);
 }
