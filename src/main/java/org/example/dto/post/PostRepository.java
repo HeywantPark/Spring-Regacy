@@ -14,4 +14,7 @@ public class PostRepository {
     public List<PostDto> findAll(){
         return postMapper.findAll();
     }
+    public List<PostDto> findByCondition(String title, String content){
+        return postMapper.findByCondition(title, content);
+    }
 }

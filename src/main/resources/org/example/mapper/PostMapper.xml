@@ -4,7 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.mapper.PostMapper">
     <select id="findAll" resultType="PostDto">
-        select id,title,content
-        from posts;
+        SELECT id,title,content
+        FROM posts;
+    </select>
+    <select id="findByCondition" resultType="PostDto">
+        SELECT id,title,content
+        FROM posts
+        <where>
+            <if test="title != null and title != ''">
+                AND title Like CONCAT('%',#{title},'%')
+            </if>
+            <if test="content != null and content != ''">
+                AND content Like CONCAT('%',#{content},'%')
+            </if>
+        </where>
     </select>
 </mapper>

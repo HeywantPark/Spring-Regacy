@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -29,6 +30,18 @@ public class PostController {
         model.addAttribute("postList", list);
 
         //post/post-show.jsp 파일
+        return context + "/post-show";
+    }
+    //게시글 검색
+    @GetMapping("/search")
+    public String postSearch(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            HttpServletRequest request,
+            Model model) {
+        log.info("=======>게시글 검색 기능 호출, " + request.getRequestURI());
+        List<PostDto> searchedList = postRepository.findByCondition(title, content);
+        model.addAttribute("postList", searchedList);
         return context + "/post-show";
     }
 }
