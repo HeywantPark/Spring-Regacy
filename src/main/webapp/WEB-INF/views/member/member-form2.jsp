@@ -7,9 +7,9 @@
     <title>회원 등록</title>
 </head>
 <body>
-<%@ include file="header.jsp"%>
-<h1>회원 추가 v3</h1>
-<form method="post" action="/member/v3/form/save">
+<%@ include file="../header.jsp"%>
+<h1>회원 추가 v2</h1>
+<form method="get" action="/member/v2/form/save">
     <label for="id">아이디 :</label>
     <input type="text" id="id" name="id" required>
     <br>

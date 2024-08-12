@@ -5,10 +5,10 @@
     <title>TODO 목록</title>
 </head>
 <body>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 <h1>TODO 목록</h1>
 <ul>
-    <li><b>할 일 목록 v2</b></li>
+    <li><b>할 일</b></li>
     <c:forEach var="todo" items="${todoList}">
         <li>${todo.todo}</li>
     </c:forEach>
