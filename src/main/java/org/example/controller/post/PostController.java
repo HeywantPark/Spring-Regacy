@@ -57,21 +57,52 @@ public class PostController {
         if (affectedRows > 0) log.info("삭제 성공");
         return "redirect:/post/v1/show";
     }
-    //게시글 추가
+    // 게시글 추가
     @PostMapping("/new")
     public String postSave(
             @RequestParam("title") String title,
             @RequestParam("content") String content,
-            HttpServletRequest request) {
-        log.info("======>게시글 추가 기능 호출, " + request.getRequestURI());
-        int affectedRows = postRepository.save(title, content);
+            HttpServletRequest request
+    ) {
+        log.info("=======> 게시글 추가 기능 호출, " + request.getRequestURI());
 
-        if (affectedRows > 0) {
-            log.info("게시글 추가 성공");
-            return "redirect:/post/v1/show";
-        } else {
-            log.error("게시글 추가 실패");
-            return context + "/post-create";
-        }
+        postRepository.save(title, content);
+
+        return "redirect:/post/v1/show";
+    }
+    // 게시글 추가 페이지 호출
+    @GetMapping("/new")
+    public String newPost(Model model) {
+        return context + "/post-new";
+    }
+    // 게시글 수정
+    @PostMapping("/update")
+    public String postUpdate(
+            @RequestParam("id") String id,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            HttpServletRequest request
+    ) {
+        log.info("================> 게시글 수정 기능 호출, " + request.getRequestURI());
+
+        long postId = Long.parseLong(id);
+        int affectedRows = postRepository.update(postId, title, content);
+
+        if (affectedRows > 0) log.info("수정 성공");
+
+        return "redirect:/post/v1/show";
+    }
+    // 게시글 수정 페이지 호출
+    @GetMapping("/update")
+    public String postEdit(@RequestParam("id") String id, HttpServletRequest request, Model model) {
+        log.info("================> 게시글 수정 페이지 호출, " + request.getRequestURI());
+
+        long postId = Long.parseLong(id);
+
+        System.out.println("##### " + postId);
+        PostDto post = postRepository.findById(postId);
+
+        model.addAttribute("post", post);
+        return context + "/post-update";
     }
 }
