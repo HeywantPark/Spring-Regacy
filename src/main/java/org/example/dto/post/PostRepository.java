@@ -20,4 +20,7 @@ public class PostRepository {
     public int delete(Long id){
         return postMapper.delete(id);
     }
+    public int save(String title, String content){
+        return postMapper.save(title, content);
+    }
 }

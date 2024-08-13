@@ -57,4 +57,21 @@ public class PostController {
         if (affectedRows > 0) log.info("삭제 성공");
         return "redirect:/post/v1/show";
     }
+    //게시글 추가
+    @PostMapping("/new")
+    public String postSave(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            HttpServletRequest request) {
+        log.info("======>게시글 추가 기능 호출, " + request.getRequestURI());
+        int affectedRows = postRepository.save(title, content);
+
+        if (affectedRows > 0) {
+            log.info("게시글 추가 성공");
+            return "redirect:/post/v1/show";
+        } else {
+            log.error("게시글 추가 실패");
+            return context + "/post-create";
+        }
+    }
 }
