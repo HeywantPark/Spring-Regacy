@@ -21,7 +21,7 @@ public class RestPostController {
 
     //게시글 목록
     @GetMapping("/show")
-    public List<PostDto> postList(HttpServletRequest request, Model model) {
+    public List<PostDto> postList(HttpServletRequest request) {
         log.info("=======> 게시글 목록 페이지 호출, " + request.getRequestURI());
         return postRepository.findAll();
     }
@@ -30,8 +30,7 @@ public class RestPostController {
     public List<PostDto> postSearch(
             @RequestParam("title") String title,
             @RequestParam("content") String content,
-            HttpServletRequest request,
-            Model model) {
+            HttpServletRequest request) {
         log.info("=======> 게시글 검색 기능 호출");
         return postRepository.findByCondition(title, content);
     }

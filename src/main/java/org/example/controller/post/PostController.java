@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequiredArgsConstructor
+@RequiredArgsConstructor()
 @RequestMapping("/post/v1")
 public class PostController {
     private final PostRepository postRepository;
