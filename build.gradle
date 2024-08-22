@@ -80,6 +80,10 @@ dependencies {
 
 //    // 스프링 부트 일때
 //    implementation 'org.springframework.boot:spring-boot-starter:2.2.0'
+
+
+    implementation 'org.apache.httpcomponents:httpcore:4.4.15'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 }
 
 test {
