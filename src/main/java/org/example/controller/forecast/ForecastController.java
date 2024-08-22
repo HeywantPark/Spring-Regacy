@@ -1,11 +1,10 @@
-package org.example.dto.weather.controller;
+package org.example.controller.forecast;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.dto.weather.WeatherDto;
+import org.example.dto.forecast.ForecastDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,18 +17,17 @@ import javax.transaction.Transactional;
 @RequestMapping("/weather")
 @PropertySource({"classpath:/application.properties"})
 @CrossOrigin(origins = "*")
-public class WeatherController {
+public class ForecastController {
 
-    @Value("${weather.url}")
+    @Value("${forecast.url}")
     private String URL;
-    @Value("${weather.icon_url}")
-    private String ICON_URL;
     @Value("${weather.api_key}")
     private String API_KEY;
 
-    @GetMapping({"", "/{city}"})
-    public ResponseEntity<WeatherDto> weather(@PathVariable(value="city", required = false) String city) {
+    @GetMapping("/forecast/{city}")
+    public ResponseEntity<ForecastDto> forest(@PathVariable("city") String city) {
         city = city == null ? "seoul" : city;
+
 
         RestTemplate restTemplate = new RestTemplate();
         String url = UriComponentsBuilder.fromHttpUrl(URL)
@@ -38,9 +36,8 @@ public class WeatherController {
                 .queryParam("APPID", API_KEY)
                 .queryParam("lang", "kr")
                 .toUriString();
-        WeatherDto weather = restTemplate.getForObject(url, WeatherDto.class);
-        log.info("오늘의 날씨: " + weather);
 
-        return ResponseEntity.ok(weather);
+        ForecastDto forestDto = restTemplate.getForObject(url, ForecastDto.class);
+        return ResponseEntity.ok(forestDto);
     }
 }
