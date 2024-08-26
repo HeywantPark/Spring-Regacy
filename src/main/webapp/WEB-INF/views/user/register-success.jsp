@@ -6,8 +6,8 @@
 </head>
 <body>
 <%@include file="../header2.jsp"%>
-<h1>로그인 성공</h1>
+<h1>회원 가입 성공</h1>
 <h2>${username} 님 환영 합니다.</h2>
-<a href="/user/logout">로그아웃</a>
+<a href="/user/login">로그인 페이지로 이동</a>
 </body>
 </html>

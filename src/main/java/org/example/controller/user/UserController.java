@@ -48,4 +48,32 @@ public class UserController {
         session.invalidate();
         return context + "/logout";
     }
+    @GetMapping("/register")
+    public String registerPage() {
+        return context + "/register";
+    }
+    @PostMapping("/register")
+    public String register(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            Model model
+    ) {
+        if(username.isEmpty() || password.isEmpty()) {
+            model.addAttribute("errMSG", "아이디 또는 비밀번호가 누락되었습니다.");
+            return context + "/register-faild";
+        }
+        User user = userService.findByUsername(username);
+        if(user != null) {
+            model.addAttribute("errMSG","동일한 ID를 가지는 사용자가 존재합니다.");
+            return context + "/register-failed";
+        }
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        userService.save(newUser);
+
+        model.addAttribute("username", username);
+        return context + "/register-success";
+    }
+
 }
