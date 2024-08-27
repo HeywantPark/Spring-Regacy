@@ -10,4 +10,6 @@
     <a href="/user/login">로그인</a>
     <a href="/user/logout">로그아웃</a>
     <a href="/user/admin">admin</a>
+    <h3>시큐리티 회원기능</h3>
+    <a href="/security/login">로그인</a>
 </header>
