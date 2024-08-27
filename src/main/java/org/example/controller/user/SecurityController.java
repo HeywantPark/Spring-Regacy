@@ -35,5 +35,9 @@ public class SecurityController {
         model.addAttribute("user", userDetails);
         return context + "/member";
     }
+    @GetMapping("/admin")
+    public String adminPage() {
+        return context + "/admin";
+    }
 
 }

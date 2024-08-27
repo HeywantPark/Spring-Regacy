@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/user/**").permitAll()
+                .antMatchers("/security/admin").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/security/**").permitAll()
                 .antMatchers("/**").access("hasRole('ROLE_MEMBER')");
 
@@ -44,6 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/security/login")
                 .defaultSuccessUrl("/security/member")
                 .failureUrl("/security/login-failed");
+
+        http.logout()
+                .logoutUrl("/security/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("remember-me","JSESSIONID")
+                .logoutSuccessUrl("/security/login")
+                .permitAll();
 
         http.addFilterBefore(encodingFilter(), CsrfFilter.class);
     }
