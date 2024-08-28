@@ -2,7 +2,7 @@ package org.example.controller.user;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.User;
-import org.example.service.UserService;
+import org.example.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

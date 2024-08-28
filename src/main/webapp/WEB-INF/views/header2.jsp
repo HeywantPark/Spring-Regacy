@@ -1,4 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    String REST_API_KEY = "4520ec182d20119719b79f321bfc3f9a";
+    String REDIRECT_URI = "http://localhost:8080/kakao/login";
+    String KAKAO_URI = "https://kauth.kakao.com/oauth/authorize?client_id=" + REST_API_KEY + "&redirect_uri=" + REDIRECT_URI + "&response_type=code";
+%>
 <header>
     <h3>V1</h3>
     <a href="/">HOME</a>
@@ -18,4 +24,5 @@
     <form id="logout-form" action="/security/logout" method="post" style="display: none;">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
+    <a href="<%= KAKAO_URI %>">카카오 로그인</a>
 </header>
