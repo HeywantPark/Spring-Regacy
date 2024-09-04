@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface Board2Mapper {
     public List<BoardDto> getList();
-    public BoardDto get(Long no);
+    public BoardDto detail(Long no);
     public int create(BoardDto board);
     public int update(BoardDto board);
     public int delete(Long no);
