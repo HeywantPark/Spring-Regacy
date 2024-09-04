@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.board.mapper.BoardMapper">
+    <select id="getList" resultType="Board">
+        select * from boards
+    </select>
+
+    <insert id="create">
+        insert into boards (title,content,author)
+        values (#{title},#{content},#{author})
+
+        <selectKey keyProperty="id" resultType="Long" keyColumn="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="detail" resultType="Board">
+        select * from boards where id = #{id}
+    </select>
+
+    <delete id="delete">
+        delete from boards where id = #{id}
+    </delete>
+
+    <update id="update">
+        update boards set
+            title = #{title},
+            content = #{content},
+            author = #{author}
+        where id = #{id}
+    </update>
+</mapper>
